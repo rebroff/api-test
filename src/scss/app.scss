@@ -1,0 +1,45 @@
+@import "../../node_modules/modern-normalize/modern-normalize";
+
+.page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 30px 0;
+}
+
+form {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 20px;
+}
+
+img {
+  max-width: 100%;
+}
+
+#result {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 20px;
+}
+
+.card {
+  border: 1px solid #bbbbbb;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+
+  img {
+    margin-bottom: auto;
+  }
+}
+
+.card__category {
+  font-size: 14px;
+  color: green;
+  margin-top: 5px;
+}
+
+.check-wrap {
+  display: inline-flex;
+  column-gap: 5px;
+}

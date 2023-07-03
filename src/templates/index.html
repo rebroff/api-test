@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ru">
+  @@include('./head.html')
+  
+  <body>
+    <!-- begin .page-->
+    <div class="page" id="page">
+      
+      <form action="">
+        <div class="check-wrap">
+          <input type="radio" id="chk" name="filter" checked class="js-all-input">
+          <label for="chk">все</label>
+        </div>
+        <div class="check-wrap">
+          <input type="radio" id="chk-1" name="filter" value="smartphones" class="js-filter-input">
+          <label for="chk-1">smartphones</label>
+        </div>
+        <div class="check-wrap">
+          <input type="radio" id="chk-2" name="filter" value="laptops" class="js-filter-input">
+          <label for="chk-2">laptops</label>
+        </div>
+      </form>
+      
+      <div id="result"></div>
+    
+    </div>
+    <!--  end .page-->
+    
+    <script src="js/bundle.js"></script>
+  </body>
+</html>

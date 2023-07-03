@@ -1,0 +1,13 @@
+node_modules
+.idea
+design
+.DS_Store
+._*
+package-lock.json
+.sass-cache
+Thumbs.db
+*.zip
+*.rar
+*.7z
+.vscode
+dist
