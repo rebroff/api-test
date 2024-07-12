@@ -142,101 +142,106 @@ img {
   }
 }
 
-//.flatpickr-day {
-//  span {
-//    position: relative;
-//    z-index: 1;
-//    pointer-events: none;
-//  }
-//
-//  &:before {
-//    pointer-events: none;
-//  }
-//
-//  &.selected {
-//    //pointer-events: none;
-//  }
-//
-//  &.inRange {
-//    box-shadow: none;
-//    background: none!important;
-//    border-color: transparent!important;
-//
-//
-//    .flatpickr-calendar._has-selected &,
-//    .flatpickr-days._hover & {
-//      border-radius: 0;
-//      box-shadow: -5px 0 0 #e6e6e6, 5px 0 0 #e6e6e6;
-//      cursor: pointer;
-//      outline: 0;
-//      background: #e6e6e6!important;
-//      border-color: #e6e6e6!important;
-//    }
-//  }
-//
-//  &.startRange {
-//    border-radius: 50% !important;
-//
-//    .flatpickr-days._hover:has(.inRange) &.selected,
-//    .flatpickr-days:has(.endRange.selected) & {
-//      position: relative;
-//
-//      border-radius: 50% 0 0 50% !important;
-//      //box-shadow: -5px 0 0 #e6e6e6, 5px 0 0 #e6e6e6;
-//      cursor: pointer;
-//      outline: 0;
-//      background: #e6e6e6!important;
-//      border-color: #e6e6e6!important;
-//
-//      box-shadow: 0 0 0 #e6e6e6, 5px 0 0 #e6e6e6!important;
-//
-//      &:before {
-//        content: '';
-//        display: block;
-//        width: 100%;
-//        height: 100%;
-//        border-radius: 50%;
-//        background: #569ff7;
-//        position: absolute;
-//        inset: 0;
-//        margin: auto;
-//      }
-//    }
-//  }
-//
-//  &.endRange {
-//    border-radius: 50% !important;
-//
-//    .flatpickr-days._hover &,
-//    .flatpickr-days:has(.startRange.selected):has(.endRange.selected) &{
-//      position: relative;
-//
-//      border-radius: 0 50% 50% 0 !important;
-//      //box-shadow: -5px 0 0 #e6e6e6, 5px 0 0 #e6e6e6;
-//      cursor: pointer;
-//      outline: 0;
-//      background: #e6e6e6!important;
-//      border-color: #e6e6e6!important;
-//
-//      &:before {
-//        content: '';
-//        display: block;
-//        width: 100%;
-//        height: 100%;
-//        border-radius: 50%;
-//        background: #569ff7;
-//        position: absolute;
-//        inset: 0;
-//        margin: auto;
-//      }
-//    }
+.flatpickr-day {
+  margin: 0!important;
+  border: 0!important;
+
+  span {
+    position: relative;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  &.inRange {
+    box-shadow: none;
+    background: none!important;
+    border-color: transparent!important;
+
+    .flatpickr-calendar._has-selected &,
+    .flatpickr-days._hover & {
+      border-radius: 0;
+      box-shadow: -5px 0 0 #e6e6e6, 5px 0 0 #e6e6e6;
+      cursor: pointer;
+      outline: 0;
+      background: #e6e6e6!important;
+      border-color: #e6e6e6!important;
+    }
+  }
+
+  &.startRange {
+    border-radius: 50% !important;
+
+    .flatpickr-days._hover &:hover,
+    .flatpickr-days._hover:has(.inRange) &.selected,
+    .flatpickr-days:has(.endRange.selected) &,
+    .flatpickr-days:has(&.selected + .endRange) &.selected:not(.endRange) {
+      position: relative;
+
+      border-radius: 50% 0 0 50% !important;
+      //box-shadow: -5px 0 0 #e6e6e6, 5px 0 0 #e6e6e6;
+      cursor: pointer;
+      outline: 0;
+      background: #e6e6e6!important;
+      border-color: #e6e6e6!important;
+
+      box-shadow: 0 0 0 #e6e6e6, 5px 0 0 #e6e6e6!important;
+
+      &:before {
+        content: '';
+        display: block;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background: #569ff7;
+        position: absolute;
+        inset: 0;
+        margin: auto;
+      }
+    }
+
+    .flatpickr-days:not(:has(.endRange)) &:hover {
+      box-shadow: none!important;
+      background: none!important;
+      border-color: transparent!important;
+    }
+  }
+
+  &.endRange {
+    border-radius: 50% !important;
+    box-shadow: none!important;
+
+    .flatpickr-days._hover &,
+    .flatpickr-days._hover &:hover,
+    .flatpickr-days:has(.startRange.selected) &.selected {
+      position: relative;
+
+      border-radius: 0 50% 50% 0 !important;
+      //box-shadow: -5px 0 0 #e6e6e6, 5px 0 0 #e6e6e6;
+      cursor: pointer;
+      outline: 0;
+      background: #e6e6e6 !important;
+      border-color: #e6e6e6 !important;
+
+      &:before {
+        content: '';
+        display: block;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background: #569ff7;
+        position: absolute;
+        inset: 0;
+        margin: auto;
+      }
+    }
+  }
 //
 //    //.flatpickr-days:not(._hover) & {
 //    //  background: none!important;
 //    //  border-color: transparent!important;
 //    //}
 //  }
-//}
+}
 //
 //
 //.flatpickr-day.selected.startRange + .endRange,

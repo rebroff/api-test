@@ -95,24 +95,13 @@ function setQuickSelectRange(instance, range) {
 export function initDatePickers() {
   const datepikers = document.querySelectorAll('.datepicker');
 
-  // flatpickr2(document.querySelector('.datepicker2'), {
-  //   // locale: Russian,
-  //   // allowInput: true,
-  //   // dateFormat: 'd.m.Y',
-  //   // defaultDate: new Date(),
-  //   // mode: 'range',
-  //   // enableTime: true,
-  //   // minDate,
-  //   // maxDate: new Date(),
-  //   // onDayCreate(dObj, dStr, fp, dayElem) {
-  //   //   console.log(dObj, dStr, fp, dayElem);
-  //   //   // dayElem.innerHTML = `<span>${dStr}</span>`;
-  //   // },
-  // });
+  flatpickr.localize(flatpickr.l10ns.ru);
 
   datepikers.forEach((datepiker) => {
     flatpickr(datepiker, {
-      locale: Russian,
+      locale: {
+        rangeSeparator: '-',
+      },
       allowInput: true,
       dateFormat: 'd.m.Y',
       // defaultDate: new Date(),
@@ -142,29 +131,29 @@ export function initDatePickers() {
 
         instance.isConfirmed = false;
 
-        // instance.daysContainer.addEventListener('mouseenter', () => {
-        //   instance.daysContainer.classList.add('_hover');
-        // });
-        //
-        // instance.daysContainer.addEventListener('mouseleave', () => {
-        //   instance.daysContainer.classList.remove('_hover');
-        //
-        //   // Если выбор диапазона не зафиксирован, то снимаем его выделение
-        //   const daysElements = [
-        //     ...instance.daysContainer.querySelectorAll('.flatpickr-day'),
-        //   ];
-        //   const selectedDaysElements = daysElements.filter((el) =>
-        //     el.classList.contains('selected')
-        //   );
-        //
-        //   if (selectedDaysElements.length < 2) {
-        //     daysElements
-        //       .filter((el) => !el.classList.contains('selected'))
-        //       .forEach((el) => {
-        //         el.classList.remove('inRange', 'endRange');
-        //       });
-        //   }
-        // });
+        instance.daysContainer.addEventListener('mouseenter', () => {
+          instance.daysContainer.classList.add('_hover');
+        });
+
+        instance.daysContainer.addEventListener('mouseleave', () => {
+          instance.daysContainer.classList.remove('_hover');
+
+          // Если выбор диапазона не зафиксирован, то снимаем его выделение
+          const daysElements = [
+            ...instance.daysContainer.querySelectorAll('.flatpickr-day'),
+          ];
+          const selectedDaysElements = daysElements.filter((el) =>
+            el.classList.contains('selected')
+          );
+
+          if (selectedDaysElements.length < 2) {
+            daysElements
+              .filter((el) => !el.classList.contains('selected'))
+              .forEach((el) => {
+                el.classList.remove('inRange', 'endRange', 'startRange');
+              });
+          }
+        });
 
         const mSelect = instance.monthsDropdownContainer;
         const ySelect = instance.yearSelect;
@@ -192,11 +181,13 @@ export function initDatePickers() {
         );
 
         // Добавляем дропдауны месяца и года
-        const monthBtns = [...mSelect.querySelectorAll('option')].map(
-          (option) => {
-            return `<button type="button" class="dp-dropdown-btn dp-dropdown-btn--month" data-value="${option.value}">${option.textContent}</button>`;
-          }
-        );
+        const getMonthBtns = () =>
+          [...mSelect.querySelectorAll('option')]
+            .map((option) => {
+              return `<button type="button" class="dp-dropdown-btn dp-dropdown-btn--month" data-value="${option.value}">${option.textContent}</button>`;
+            })
+            .join('');
+
         const yearBtns = [...ySelect.querySelectorAll('option')].map(
           (option) => {
             return `<button type="button" class="dp-dropdown-btn dp-dropdown-btn--year" data-value="${option.value}">${option.textContent}</button>`;
@@ -219,7 +210,7 @@ export function initDatePickers() {
           'beforeend',
           `
             <div class="dp-month-dropdown-content">
-                ${monthBtns.join('')}
+                ${getMonthBtns()}
             </div>
             <div class="dp-year-dropdown-content">
                 ${yearBtns.join('')}
@@ -258,6 +249,7 @@ export function initDatePickers() {
 
         ySelect.addEventListener('change', () => {
           yDropdowmToggle.textContent = ySelect.value;
+          mDropdownContent.innerHTML = getMonthBtns();
         });
 
         calendarContainer.addEventListener('click', (e) => {
@@ -280,16 +272,26 @@ export function initDatePickers() {
           if (target.dataset?.range) {
             setQuickSelectRange(instance, target.dataset?.range);
           }
-
-          // if (target.classList.contains('flatpickr-day.selected')) {
-          //   if(target.classList.contains('endRange')) {
-          //     instance.setDate(instance.selectedDates[0])
-          //   } else {
-          //     instance.setDate(instance.selectedDates.slice(-1))
-          //   }
-          //   return false;
-          // }
         });
+
+        // calendarContainer
+        //   .querySelector('.flatpickr-days')
+        //   .addEventListener('click', (e) => {
+        //     const { target } = e;
+        //
+        //     if (target.classList.contains('flatpickr-day', 'selected')) {
+        //       // e.stopPropagation();
+        //       // e.preventDefault();
+        //       // console.log();
+        //       //
+        //       // if (target.classList.contains('endRange')) {
+        //       //   instance.selectedDates.pop();
+        //       // } else {
+        //       //   instance.selectedDates.slice(-1);
+        //       // }
+        //       // return false;
+        //     }
+        //   });
       },
       onChange(selectedDates, dateStr, instance) {
         const mSelect = instance.monthsDropdownContainer;
