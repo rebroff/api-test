@@ -1,6 +1,7 @@
 import { API_URL, URL_PRODUCTS, URL_CATEGORY } from './constants/api';
 import getRouteUrl from './utils/getRouteUrl';
 import updateProductsList from './product/updateProductsList';
+import { initDatePickers } from './initDatePickers';
 
 const formEl = document.querySelector('form');
 const resultEl = document.querySelector('#result');
@@ -27,3 +28,5 @@ formEl.addEventListener('change', (e) => {
 });
 
 updateProductsList(urlAll, resultEl);
+
+initDatePickers();
