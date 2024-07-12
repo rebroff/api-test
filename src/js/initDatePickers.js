@@ -142,11 +142,11 @@ export function initDatePickers() {
           const daysElements = [
             ...instance.daysContainer.querySelectorAll('.flatpickr-day'),
           ];
-          const selectedDaysElements = daysElements.filter((el) =>
-            el.classList.contains('selected')
-          );
+          // const selectedDaysElements = daysElements.filter((el) =>
+          //   el.classList.contains('selected')
+          // );
 
-          if (selectedDaysElements.length < 2) {
+          if (!instance.calendarContainer.classList.contains('_has-selected')) {
             daysElements
               .filter((el) => !el.classList.contains('selected'))
               .forEach((el) => {

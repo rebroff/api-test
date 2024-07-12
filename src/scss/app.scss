@@ -50,7 +50,7 @@ img {
 
 .flatpickr-innerContainer {
   flex-direction: column;
-  position: relative;
+  //position: relative;
 }
 
 .flatpickr-prev-month,
@@ -212,7 +212,8 @@ img {
 
     .flatpickr-days._hover &,
     .flatpickr-days._hover &:hover,
-    .flatpickr-days:has(.startRange.selected) &.selected {
+    .flatpickr-days:has(.startRange.selected) &.selected,
+    ._has-selected &.selected {
       position: relative;
 
       border-radius: 0 50% 50% 0 !important;
